@@ -1,28 +1,27 @@
-//your JS code here. If required.
-const codes = document.querySelectorAll('.code');
+const inputs = document.querySelectorAll('.code');
 
-codes[0].focus();
+inputs.forEach((input, index) => {
+  input.addEventListener('input', (e) => {
+    const value = e.target.value;
 
-codes.forEach((input, idx) => {
+    if (value) {
+      if (index < inputs.length - 1) {
+        inputs[index + 1].focus();
+      }
+    }
+  });
+
   input.addEventListener('keydown', (e) => {
     const key = e.key;
 
-    if (key >= '0' && key <= '9') {
-      input.value = '';
-      setTimeout(() => {
-        if (idx < codes.length - 1) {
-          codes[idx + 1].focus();
+    if (key === 'Backspace') {
+      if (input.value === '') {
+        if (index > 0) {
+          inputs[index - 1].focus();
         }
-      }, 10);
-    } else if (key === 'Backspace') {
-      input.value = '';
-      if (idx > 0) {
-        setTimeout(() => {
-          codes[idx - 1].focus();
-        }, 10);
+      } else {
+        input.value = '';
       }
-    } else {
-      e.preventDefault(); // Prevent non-numeric input
     }
   });
 });
