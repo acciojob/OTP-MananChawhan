@@ -1,5 +1,9 @@
 const inputs = document.querySelectorAll('.code');
 
+window.addEventListener('DOMContentLoaded', () => {
+  inputs[0].focus();
+});
+
 inputs.forEach((input, index) => {
   input.addEventListener('input', (e) => {
     const value = e.target.value;
